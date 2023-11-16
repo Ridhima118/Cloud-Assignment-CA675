@@ -16,9 +16,12 @@ LOCATION 'gs://yoshika_bucket1/Data';
 
 DESCRIBE Amazon_Data;
 
+SELECT * FROM Amazon_Data LIMIT 5;
+
 SELECT COUNT(*) FROM Amazon_Data WHERE UserId = ' ';
 
 SELECT COUNT(*) FROM Amazon_Data WHERE ProductId = ' ';
+
 
 CREATE TABLE s_dataset AS
 SELECT *

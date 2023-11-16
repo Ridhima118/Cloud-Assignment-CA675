@@ -1,0 +1,31 @@
+gsutil ls gs://yoshika_bucket1/Data
+
+beeline -u jdbc:hive2://localhost:10000/default -n chhabraridhima118@cluster-efe0-m -d org.apache.hive.jdbc.HiveDriver
+
+CREATE EXTERNAL TABLE Amazon_Data
+  (Id INT,
+  ProductId VARCHAR(50),
+  UserId VARCHAR(50),
+  ProfileName VARCHAR(50),
+  HelpfulnessNumerator VARCHAR(20),
+  HelpfulnessDenominator VARCHAR(20),
+  Score VARCHAR(50),
+  Summary VARCHAR(50),
+  Text VARCHAR(100))
+LOCATION 'gs://yoshika_bucket1/Data';
+
+DESCRIBE Amazon_Data;
+
+SELECT COUNT(*) FROM Amazon_Data WHERE UserId = ' ';
+
+SELECT COUNT(*) FROM Amazon_Data WHERE ProductId = ' ';
+
+CREATE TABLE s_dataset AS
+SELECT *
+FROM Amazon_Data
+WHERE Text LIKE '%spam%';
+
+CREATE TABLE h_dataset AS
+SELECT *
+FROM Amazon_Data
+WHERE Text NOT LIKE '%spam%';
